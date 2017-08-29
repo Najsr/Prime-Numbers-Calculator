@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prime_Numbers_Client", "Prime_Numbers_Client\Prime_Numbers_Client.csproj", "{3E24040D-0D37-41C1-BE1C-92354439885A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prime_Numbers_Server", "Prime_Numbers_Server\Prime_Numbers_Server.csproj", "{CFAE9CE6-7E01-44BF-90B3-E12AEE7ACA16}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3E24040D-0D37-41C1-BE1C-92354439885A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E24040D-0D37-41C1-BE1C-92354439885A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E24040D-0D37-41C1-BE1C-92354439885A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E24040D-0D37-41C1-BE1C-92354439885A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFAE9CE6-7E01-44BF-90B3-E12AEE7ACA16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFAE9CE6-7E01-44BF-90B3-E12AEE7ACA16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFAE9CE6-7E01-44BF-90B3-E12AEE7ACA16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFAE9CE6-7E01-44BF-90B3-E12AEE7ACA16}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
