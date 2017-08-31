@@ -47,7 +47,7 @@ namespace Prime_Numbers_Client
 
             } catch
             {
-                Console.WriteLine("We could connected, please check your connection!");
+                Console.WriteLine("We couldn't connected, please check your connection!");
                 Console.ReadLine();
                 return;
             }
