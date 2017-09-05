@@ -43,21 +43,32 @@ namespace Prime_Numbers_Client
             {
                 string[] conn_string = Console.ReadLine().Split(':');
                 newTCPConn = TCPConnection.GetConnection(new ConnectionInfo(conn_string[0], int.Parse(conn_string[1])));
+                newTCPConn.AppendIncomingPacketHandler<byte[]>("HS2", OnHSArrive);
                 newTCPConn.EstablishConnection();
+                newTCPConn.SendObject("HS1", new byte[] { 0x52, 0x45, 0x41, 0x44, 0x59 });
 
-            } catch
+            }
+            catch (Exception ex)
             {
-                Console.WriteLine("We couldn't connected, please check your connection!");
+                Console.WriteLine("We couldn't connected, please check your connection! Error: " + ex.Message);
                 Console.ReadLine();
                 return;
             }
             newTCPConn.AppendIncomingPacketHandler<string>("Data", OnDataArrive);
             newTCPConn.AppendShutdownHandler(OnShutdown);
-            RijndaelPSKEncrypter.AddPasswordToOptions(newTCPConn.ConnectionDefaultSendReceiveOptions.Options, "Strong Password xd");
             Console.Title = "CLIENT " + newTCPConn.ConnectionInfo.LocalEndPoint;
             Console.WriteLine("Connected to {0}", newTCPConn.ConnectionInfo.RemoteEndPoint);
             while (true)
                 Console.ReadKey(true);
+        }
+
+        private static void OnHSArrive(PacketHeader packetHeader, Connection connection, byte[] incomingObject)
+        {
+            if (incomingObject.Length != 4)
+                throw new Exception("Received unexpected length of HandShake packet");
+            byte[] hs = incomingObject;
+            Array.Reverse(hs);
+            connection.SendObject("HS1", hs);
         }
 
         private static void OnDataArrive(PacketHeader header, Connection connection, string message)
@@ -81,8 +92,15 @@ namespace Prime_Numbers_Client
         {
             Console.WriteLine("Connection to the server has been lost!");
             Console.Title = "CLIENT - DISCONNECTED";
-            foreach (Thread thread in threads)
-                thread.Abort();
+            try
+            {
+                foreach (Thread thread in threads)
+                    thread.Abort();
+            }
+            catch
+            {
+                Console.WriteLine("Failed to kill all running threads, probably no calculation was running");
+            }
             Console.ReadKey(true);
             Environment.Exit(0);
         }
