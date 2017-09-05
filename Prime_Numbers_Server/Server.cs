@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net;
 using NetworkCommsDotNet;
 using NetworkCommsDotNet.Connections;
-using NetworkCommsDotNet.DPSBase;
 using System.Diagnostics;
 using System.Timers;
 

@@ -4,7 +4,6 @@ using System.Threading;
 using NetworkCommsDotNet;
 using NetworkCommsDotNet.Connections;
 using NetworkCommsDotNet.Connections.TCP;
-using NetworkCommsDotNet.DPSBase;
 
 namespace Prime_Numbers_Client
 {
