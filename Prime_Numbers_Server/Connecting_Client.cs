@@ -15,7 +15,6 @@ namespace Prime_Numbers_Server
             connection = con;
             seconds = (byte)secs;
             new Random().NextBytes(ver);
-            this.SendHandShake1();
         }
 
         public void SendHandShake1()

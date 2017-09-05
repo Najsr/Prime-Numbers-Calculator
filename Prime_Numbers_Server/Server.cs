@@ -122,16 +122,17 @@ namespace Prime_Numbers_Server
             int second = DateTime.Now.Second;
             Connection[] clients = new Connection[connecting_clients.Count];
             int i = 0;
-            foreach(Connecting_Client client in connecting_clients)
+            foreach (Connecting_Client client in connecting_clients)
             {
-                if(second > client.seconds + 1 || (client.seconds >= 58 && client.seconds > second))
+                if (second > client.seconds + 1 || (client.seconds >= 58 && client.seconds > second))
                 {
                     clients[i] = client.connection;
                 }
                 i++;
             }
-            foreach(var cl in clients)
+            foreach (var cl in clients)
             {
+                cl.CloseConnection(false);
                 connecting_clients.RemoveAll(x => x.connection == cl);
             }
         }
@@ -140,7 +141,7 @@ namespace Prime_Numbers_Server
         {
             if (incomingObject.Length == 5 && incomingObject.SequenceEqual(new byte[] { 0x52, 0x45, 0x41, 0x44, 0x59 }))
             {
-                connecting_clients.Add(new Connecting_Client(connection, DateTime.Now.Second));
+                connecting_clients.Find(x => x.connection == connection).SendHandShake1();
                 return;
             }
             if (incomingObject.Length == 4)
@@ -166,6 +167,7 @@ namespace Prime_Numbers_Server
                 connection.CloseConnection(false);
                 return;
             }
+            connecting_clients.Add(new Connecting_Client(connection, DateTime.Now.Second));
         }
         private static bool isRemoving = false;
 
