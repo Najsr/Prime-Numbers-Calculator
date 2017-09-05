@@ -136,10 +136,11 @@ namespace Prime_Numbers_Server
                 connecting_clients.RemoveAll(x => x.connection == cl);
             }
         }
+        private static byte[] InitHS = new byte[] { 0x52, 0x45, 0x41, 0x44, 0x59 };
 
         private static void HSReceived(PacketHeader packetHeader, Connection connection, byte[] incomingObject)
         {
-            if (incomingObject.Length == 5 && incomingObject.SequenceEqual(new byte[] { 0x52, 0x45, 0x41, 0x44, 0x59 }))
+            if (incomingObject.Length == 5 && incomingObject.SequenceEqual(InitHS))
             {
                 connecting_clients.Find(x => x.connection == connection).SendHandShake1();
                 return;
