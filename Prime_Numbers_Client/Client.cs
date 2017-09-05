@@ -49,7 +49,7 @@ namespace Prime_Numbers_Client
             }
             catch (Exception ex)
             {
-                Console.WriteLine("We couldn't connected, please check your connection! Error: " + ex.Message);
+                Console.WriteLine("We couldn't connect, please check your connection! Error: " + ex.Message);
                 Console.ReadLine();
                 return;
             }
