@@ -186,7 +186,7 @@ namespace Prime_Numbers_Server
                 connections.Clear();
                 return;
             }
-            else if ((isRunning && !connections.Any(x => x == connection)) || (connecting_clients.Find(x => x.connection == connection) != null))
+            else if (!connections.Any(x => x == connection))
             {
                 return;
             }
